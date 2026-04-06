@@ -1,0 +1,83 @@
+# Creating a function that converts a string into a vertical matrix of chars..
+
+# Yes I am copying the name, sue me
+
+def vertical_text(text: str, **kwargs) -> list:
+    """
+   Accepts the user data and returns them in a matrix format
+    
+    Agrs:
+        text (str): Where the user inputs the text
+    
+    Returns:
+        list: A list of the data splitted into multiple list and displayed vertically
+        
+    Example:
+        >>> vertical_txt("Holy bananas")
+        output = [
+            ["H", "b"],
+            ["o", "a"],
+            ["l", "n"],
+            ["y", "a"],
+            [" ", "n"],
+            [" ", "a"],
+            [" ", "s"]
+                 ]        
+    """
+    
+
+    text = text.strip()
+    
+    #Outline:
+        # We would take the text and make sure they all have the same number 
+        # of characters to make working on them eaiser
+    
+    words = text.split()
+    
+    # Finding the maximum length of the word
+
+    words_count = len(words) # The number of words in the sentence
+    
+    letter_count = [] # The number of letters in the words
+    
+    for word in words:
+        letter_count.append(len(list(word)))  
+
+    max_word_num = max(letter_count) #  Number of words of the word with highest letter count 
+    
+   #print(letter_count)
+    
+   #print(words[letter_count.index(max_word_num)]) To show the word with max_word_num
+    
+   #print(max_word_num)
+    
+   #Now making all the words max_word_count
+    
+    for i, word in enumerate(words):
+        if len(word) < max_word_num:
+            new_word = word+" "*(max_word_num - len(word))
+            words[i] = new_word
+
+    major_list = [] # The Bigger set containing smaller sets of list
+
+    for j in range(max_word_num):
+    
+        sub_list = [] # The smaller list in the bigger one
+
+        for word in words:
+            letter = list(word)
+
+            sub_list.append(letter[j])
+           
+        major_list.append(sub_list)
+    
+    print("[")
+    for single_list in major_list:
+        print(f"{single_list},")
+    print("]")
+
+
+vertical_text("Testing once again after the 6 hrs try")
+
+# Thanks alot, spent 6 hrs learning new built-in functions to do a revised 
+# form of my first one 
